@@ -1,4 +1,4 @@
-import {Component, View, bootstrap} from 'angular2/angular2';
+import {ComponentAnnotation as Component, ViewAnnotation as View, bootstrap} from 'angular2/angular2';
 import {Angular2App} from 'angular-2-app';
 
 @Component({

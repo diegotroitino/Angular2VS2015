@@ -12,14 +12,15 @@
 
     <script src="lib/system.js"></script>
     <script src="lib/zone.js"></script>
+    <script src="lib/Reflect.js"></script>
 
     <script>
       System.config({
         paths: {
           'angular2/*': 'lib/angular2.js',
           'traceur-runtime': 'lib/traceur-runtime.js',
-          'rx/dist/rx.all': 'lib/rx.all.js', //until  2.0.0-alpha.21 
-            //'rx': 'lib/rx.all.js', //from 2.0.0-alpha.24
+          //'rx/dist/rx.all': 'lib/rx.all.js', //until  2.0.0-alpha.21 
+          'rx': 'lib/rx.js', //from 2.0.0-alpha.24
           'index': 'index.js'
         }
       });
