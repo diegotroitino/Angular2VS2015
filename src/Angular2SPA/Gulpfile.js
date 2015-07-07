@@ -4,11 +4,29 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     rename = require('gulp-rename'),
     shell = require('gulp-shell'),
-    traceur = require('gulp-traceur');
+    traceur = require('gulp-traceur'),
+    webserver = require('gulp-webserver');
 
 // run init tasks
 gulp.task('default', ['dependencies', 'angular2', 'js', 'html', 'css']);
 
+// run development task
+gulp.task('dev', ['watch', 'serve']);
+
+// serve the build dir
+gulp.task('serve', function () {
+    gulp.src('wwwroot')
+      .pipe(webserver({
+          open: true
+      }));
+});
+
+// watch for changes and run the relevant task
+gulp.task('watch', function () {
+    gulp.watch('src/**/*.js', ['js']);
+    gulp.watch('src/**/*.html', ['html']);
+    gulp.watch('src/**/*.css', ['css']);
+});
 
 // move dependencies into build dir 
 gulp.task('dependencies', function () {
@@ -30,8 +48,9 @@ gulp.task('dependencies', function () {
 gulp.task('angular2', function () {
     return gulp.src([
       traceur.RUNTIME_PATH,
-      'node_modules/angular2/es6/prod/*.es6',
-      'node_modules/angular2/es6/prod/src/**/*.es6'
+      'node_modules/angular2/es6/prod/*.js',
+      '!node_modules/angular2/es6/prod/es5build.js',
+      'node_modules/angular2/es6/prod/src/**/*.js'
     ], {
         base: 'node_modules/angular2/es6/prod'
     })
